@@ -13,8 +13,9 @@ from .models import AusstiegAmb
 def home(request):
     if request.user.is_anonymous:
         return render(request, 'main/index.html')
+    item = AusstiegAmb.objects.all()
     current_user = User.objects.all().values().get(username=request.user.username)
-    context = {'current_user': current_user}
+    context = {'current_user': current_user, 'items': item}
     return render(request, 'main/index.html', context)
 
 @login_required
@@ -57,6 +58,20 @@ def create(request):
             'current_user':current_user, 'form':f
         }
         return render(request, 'main/create.html', context)
+
+@login_required
+def updatesurvey(request, id):
+    venue = AusstiegAmb.objects.get(pk=id)
+    form = CreateAusstiegAbmulanz(request.POST or None, instance=venue)
+    if form.is_valid():
+        form.save(user=request.user, update_fields= ['name', 'schriftlichepruefung', 'muendlichepruefung', 'akten_abgegeben', 'therapeutenornder_fertiggestellt',
+        'vorname','festplatte_abgegeben','schluessel_abgegeben','schließfach_geprueft','tuerchip_abgegeben',
+        'tuerschild_abgegeben','namensschild_abgegeben','versicherung_abgemeldet','fachkonverenz_ausgetragen',
+        'email_verteilerlisten_entfernt','dauerbuchung_geloescht','Staatspruefungstermine_eingetragen','Fiona_auf_beendet',
+        'festplatte_geloescht','pc_account_deaktiviert','pia_zugang_deaktiviert','email_gelöscht'])
+        return redirect('home')
+    context = {'venue': venue, 'form': form}
+    return render(request, 'main/updatesurvey.html', context)
 
 @login_required
 def feed(request):

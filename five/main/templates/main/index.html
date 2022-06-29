@@ -13,8 +13,9 @@
 
 <button type="button" class="btn btn-primary" onclick="location.href = '/create'">Erstelle Austieg aus der Ambulanz</button>
 <button type="button" class="btn btn-success" onclick="location.href = '/feed'">Feed</button>
+<button type="button" class="btn btn-success" onclick="location.href = '/updatesurvey'">Update Survey</button>
 
-<div class="col-3 p-0  bg-success rounded-2">
+<div class="col-3 p-0 rounded-2">
   {% if messages %}
   <ul class="p-2 text-white m-0">
       {% for message in messages %}
@@ -22,6 +23,26 @@
       {% endfor %}
   </ul>
   {% endif %}
+  <h1>Test</h1>
+  {% if items %}
+  <table class="table table-striped table-hover table-bordered">
+    {% for entry in items %}
+    <tr>
+      <td>
+        <a href="updatesurvey/{{ entry.id }}/">{{ entry.id }}</a> in <a>{{ entry.name }}</a><br>
+      </td>
+      <td class="text-end">
+        <a href="{% url 'updatesurvey' entry.id %}">Update</a> 
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+        <ul>
+
+        </ul>
+    {% else %}
+        <p>Tamam keine Such Anzeigen</p>
+    {% endif %}
 </div>
 
 {% endblock %}

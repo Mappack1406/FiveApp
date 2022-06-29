@@ -30,8 +30,15 @@ class AusstiegAmb(models.Model):
     pia_zugang_deaktiviert = models.DateTimeField(default=timezone.now)
     email_gelöscht = models.DateTimeField(default=timezone.now)
     vorname = models.CharField(max_length=100)
-    created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now=True)
+    created_on = models.DateTimeField(editable=False)
+    updated_on = models.DateTimeField()
+    
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        if not self.id:
+            self.created_on = timezone.now()
+        self.updated_on = timezone.now()
+        return super(AusstiegAmb, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name

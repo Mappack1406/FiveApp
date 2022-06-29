@@ -116,5 +116,3 @@ class CreateAusstiegAbmulanz(ModelForm):
             email_gelöscht = self.cleaned_data['email_gelöscht']
         )
         return post
-
-    

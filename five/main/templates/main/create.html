@@ -1,0 +1,171 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="col-xxl-12">
+    <h3 class="m-3 pb-4 fs-2 text-center">Aussteig aus der Ambulanz</h3>
+    
+    <form method="post">
+        <div class="container">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <div class="mb-1 row pb-1">
+                        <label class="col-sm-6 col-form-label">Vorname des Therapeuts:</label>
+                        <div class="col-sm-6">
+                            {{ form.vorname }}
+                        </div>
+                    </div>
+                    <div class="mb-1 row pb-2">
+                        <label class="col-sm-6 col-form-label">Name des Therapeuts:</label>
+                        <div class="col-sm-6">
+                            {{ form.name }}
+                        </div>
+                    </div>
+                    <div class="mb-1 row">
+                        <label class="col-sm-6 col-form-label">Datum der Schriftlichepruefung:</label>
+                        <div class="col-sm-6">
+                            {{ form.schriftlichepruefung }}
+                        </div>
+                    </div>
+                    <div class="mb-1 row">
+                        <label class="col-sm-6 col-form-label">Datum der Mündlichenprüfung:</label>
+                        <div class="col-sm-6">
+                            {{ form.muendlichepruefung }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Akten abgegeben:</label>
+                        <div class="col-sm-6">
+                            {{ form.akten_abgegeben }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Therapeutenordner fertiggestellt:</label>
+                        <div class="col-sm-6">
+                            {{ form.therapeutenornder_fertiggestellt }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Festplatte abgegeben:</label>
+                        <div class="col-sm-6">
+                            {{ form.festplatte_abgegeben }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Schlüssel abgegeben:</label>
+                        <div class="col-sm-6">
+                            {{ form.schluessel_abgegeben }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">schließfach geprüft:</label>
+                        <div class="col-sm-6">
+                            {{ form.schließfach_geprueft }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">TÜrchip abgegeben:</label>
+                        <div class="col-sm-6">
+                            {{ form.tuerchip_abgegeben }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Türschild abgegeben:</label>
+                        <div class="col-sm-6">
+                            {{ form.tuerschild_abgegeben }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Namensschild abgegeben:</label>
+                        <div class="col-sm-6">
+                            {{ form.namensschild_abgegeben }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Versicherung abgemeldet:</label>
+                        <div class="col-sm-6">
+                            {{ form.versicherung_abgemeldet }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Fachkonverenz ausgetragen:</label>
+                        <div class="col-sm-6">
+                            {{ form.fachkonverenz_ausgetragen }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Email Verteilerlisten entfernt:</label>
+                        <div class="col-sm-6">
+                            {{ form.email_verteilerlisten_entfernt }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Dauerbuchung gelöscht:</label>
+                        <div class="col-sm-6">
+                            {{ form.dauerbuchung_geloescht }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Staatspruefungstermine eingetragen:</label>
+                        <div class="col-sm-6">
+                            {{ form.Staatspruefungstermine_eingetragen }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Fiona_auf_beendet:</label>
+                        <div class="col-sm-6">
+                            {{ form.Fiona_auf_beendet }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">Festplatte geloescht:</label>
+                        <div class="col-sm-6">
+                            {{ form.festplatte_geloescht }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">PC Account deaktiviert:</label>
+                        <div class="col-sm-6">
+                            {{ form.pc_account_deaktiviert }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">pia_zugang_deaktiviert:</label>
+                        <div class="col-sm-6">
+                            {{ form.pia_zugang_deaktiviert }}
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-sm-6 col-form-label">email_gelöscht:</label>
+                        <div class="col-sm-6">
+                            {{ form.email_gelöscht }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="row">
+                <div class="col-10 ms-auto">
+                    <input class="btn btn-primary" type="submit" value="Submit" />
+                </div>
+                <div class="col-2 text-end">
+                    <a class="btn btn-secondary" href="{% url 'home' %}">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </form>
+        <div class="col-3 p-0  bg-success rounded-2">
+            {% if messages %}
+            <ul class="p-2 text-white m-0">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    
+</div>
+{% endblock %}

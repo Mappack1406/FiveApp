@@ -1,0 +1,27 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+<div class="container d-fluid pt-3" style="margin: auto;">
+  <h1 class="text-center">{% block title %}Home{% endblock %}</h1>
+  {% if user.is_authenticated %}
+  <p>Hi {{ user.username }}!</p>
+  {% else %}
+  <p>You are not logged in</p>
+  {% endif %}
+</div>
+
+
+<button type="button" class="btn btn-primary" onclick="location.href = '/create'">Erstelle Austieg aus der Ambulanz</button>
+<button type="button" class="btn btn-success" onclick="location.href = '/feed'">Feed</button>
+
+<div class="col-3 p-0  bg-success rounded-2">
+  {% if messages %}
+  <ul class="p-2 text-white m-0">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+{% endblock %}

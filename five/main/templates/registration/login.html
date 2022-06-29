@@ -1,0 +1,21 @@
+{% extends "main/base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container p-4 border rounded-3 position-absolute top-50 start-50 translate-middle">
+  <h3 class="m-3 fs-2">Login</h3>
+  <form method="post">
+    <div class="d-grid">
+      {% csrf_token %}
+      <table style="border-collapse:separate; border-spacing:.7em;">
+        {{ form.as_table }}
+        <tr>
+          <td>&nbsp;</td>
+          <td><input class="btn btn-primary" type="submit" value="Submit"></td>
+        </tr>                
+      </table>
+    </div>
+  </form>
+</div>
+{% endblock %}

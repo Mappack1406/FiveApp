@@ -1,0 +1,41 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+<div class="col pt-5">
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Vorname</th>
+                <th scope="col">Datum</th>
+                <th scope="col">Letztes Änderungsdatum</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                {% for entry in q %}
+              <tr>
+                <th scope="row">{{ entry.id }}</th>
+                <td>{{ entry.name }}</td>
+                <td>{{ entry.vorname }}</td>
+                <td>{{ entry.created_on }}</td>
+                <td>{{ entry.updated_on }}</td>
+              </tr>
+              {% endfor %}   
+            </tbody>
+
+        </table>
+        <div class="d-fluid text-end">
+            <button type="button" class="btn btn-success" onclick="location.href = '/'">Get back to Home</button>
+        </div>
+    </div>
+    
+    {{user}}
+</div>
+
+
+
+{% endblock %}

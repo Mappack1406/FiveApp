@@ -1,0 +1,24 @@
+@login_required
+def updatesurvey(request, id):
+    venue = AusstiegAmb.objects.get(pk=id)
+    form = CreateAusstiegAbmulanz(request.POST or None, instance=venue)
+    if form.is_valid():
+        form.save(user=request.user, update_fields= ['name', 'schriftlichepruefung', 'muendlichepruefung', 'akten_abgegeben', 'therapeutenornder_fertiggestellt',
+        'vorname','festplatte_abgegeben','schluessel_abgegeben','schließfach_geprueft','tuerchip_abgegeben',
+        'tuerschild_abgegeben','namensschild_abgegeben','versicherung_abgemeldet','fachkonverenz_ausgetragen',
+        'email_verteilerlisten_entfernt','dauerbuchung_geloescht','Staatspruefungstermine_eingetragen','Fiona_auf_beendet',
+        'festplatte_geloescht','pc_account_deaktiviert','pia_zugang_deaktiviert','email_gelöscht'])
+        return redirect('home')
+    context = {'venue': venue, 'form': form}
+    return render(request, 'main/updatesurvey.html', context)
+
+
+@login_required
+def updatesurvey(request, id):
+    instance = Testdb.objects.get(pk=id)
+    form = Testdbform(request.POST or None, instance=instance)
+    if form.is_valid():
+        form.save(user=request.user, update_fields= ['name','vorname'])
+        return redirect('home')
+    context = {'venue': instance, 'form': form}
+    return render(request, 'main/updatesurvey.html', context)

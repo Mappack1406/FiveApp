@@ -6,7 +6,16 @@ from django.utils import timezone
 
 User = get_user_model()
 
+class Testdb(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    vorname = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
 class AusstiegAmb(models.Model):
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     schriftlichepruefung = models.DateTimeField(default=timezone.now)
@@ -30,15 +39,8 @@ class AusstiegAmb(models.Model):
     pia_zugang_deaktiviert = models.DateTimeField(default=timezone.now)
     email_gelöscht = models.DateTimeField(default=timezone.now)
     vorname = models.CharField(max_length=100)
-    created_on = models.DateTimeField(editable=False)
-    updated_on = models.DateTimeField()
-    
-    def save(self, *args, **kwargs):
-        ''' On save, update timestamps '''
-        if not self.id:
-            self.created_on = timezone.now()
-        self.updated_on = timezone.now()
-        return super(AusstiegAmb, self).save(*args, **kwargs)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name

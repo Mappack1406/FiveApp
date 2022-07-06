@@ -9,7 +9,7 @@ from django.contrib import messages
 from pkg_resources import require
 from django.forms import ModelForm, TextInput, DateTimeInput, Textarea
 
-from .models import AusstiegAmb, Testdb
+from .models import AusstiegAmb
 
 #becomes auth_user in sqlite3
 class CustomUserCreationForm(forms.Form):
@@ -48,30 +48,6 @@ class CustomUserCreationForm(forms.Form):
             self.cleaned_data['password1']
         )
         return user
-
-class Testdbform(ModelForm):
-    class Meta:
-        model = Testdb
-        fields = ['name','vorname']
-        widgets = {
-            'name': TextInput(attrs={
-                'class': "form-control",
-                'style': 'max-width: 240px;',
-                'placeholder': 'Name'
-                }),
-            'vorname': TextInput(attrs={
-                'class': "form-control",
-                'style': 'max-width: 240px;',
-                'placeholder': 'Vorname'
-                })}
-    def save(self, *args, **kwargs):
-        post = Testdb.objects.create(
-            user = kwargs.pop('user'),
-            name = self.cleaned_data['name'],
-            vorname = self.cleaned_data['vorname']
-            )
-        return post
-
 
 #becomes main_AusstiegAmb in sqlite3
 class CreateAusstiegAbmulanz(ModelForm):

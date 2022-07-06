@@ -30,7 +30,7 @@
     {% for entry in items %}
     <tr>
       <td>
-        <a href="updatesurvey/{{ entry.id }}/">{{ entry.id }}</a> in <a>{{ entry.name }}</a><br>
+        <a href="details/{{ entry.id }}/" class="text-black text-decoration-none">{{ entry.id }} in {{ entry.name }}</a>
       </td>
       <td class="text-end">
         <a href="{% url 'updatesurvey' entry.id %}">Update</a> 

@@ -5,11 +5,12 @@ from .forms import CustomUserCreationForm, CreateAusstiegAbmulanz
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
-from django.forms.models import model_to_dict
+from .decorators import allowed_users
 
 
 from .models import AusstiegAmb
-
+@login_required
+@allowed_users(allowed_roles=['admin', 'customer'])
 def deletesurvey(request, id):
     survey = AusstiegAmb.objects.get(id=id)
     survey.delete()

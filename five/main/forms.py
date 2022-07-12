@@ -91,7 +91,8 @@ class CreateAusstiegAbmulanz(forms.ModelForm):
             'email_gelöscht': forms.SelectDateWidget(years=range(2014,2030))
         }
     def save(self,*args, **kwargs):
-        post = AusstiegAmb.objects.create(
+
+        post = AusstiegAmb.objects.update_or_create(
             user = kwargs.pop('user'),
             vorname = self.cleaned_data['vorname'],
             name = self.cleaned_data['name'],
@@ -117,3 +118,4 @@ class CreateAusstiegAbmulanz(forms.ModelForm):
             email_gelöscht = self.cleaned_data['email_gelöscht']
         )
         return post
+

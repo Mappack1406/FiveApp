@@ -35,6 +35,9 @@
       <td class="text-end">
         <a href="{% url 'updatesurvey' entry.id %}">Update</a> 
       </td>
+      <td class="text-end">
+        <a href="{% url 'deletesurvey' entry.id %}">Delete</a>
+      </td>
     </tr>
     {% endfor %}
   </table>

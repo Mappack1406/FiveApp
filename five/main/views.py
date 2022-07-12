@@ -10,6 +10,11 @@ from django.forms.models import model_to_dict
 
 from .models import AusstiegAmb
 
+def deletesurvey(request, id):
+    survey = AusstiegAmb.objects.get(id=id)
+    survey.delete()
+    return redirect('home')
+
 def details(request, id):
     object1 = AusstiegAmb.objects.filter(id=id).values()[0]
     items = AusstiegAmb.objects.get(pk=id)
@@ -56,13 +61,13 @@ def create(request):
         return render(request, 'main/create.html', context)
 
 @login_required
-def updatesurvey(request, ausstiegamb_id):
-    venue = AusstiegAmb.objects.get(pk=ausstiegamb_id)
-    form = CreateAusstiegAbmulanz(request.POST or None, instance=venue)
+def updatesurvey(request, id):
+    survey = AusstiegAmb.objects.get(id=id)
+    form = CreateAusstiegAbmulanz(request.POST or None, instance=survey)
     if form.is_valid():
         form.save(user=request.user)
         return redirect('home')
-    context = {'venue': venue, 'form': form}
+    context = {'survey': survey, 'form': form}
     return render(request, 'main/updatesurvey.html', context)
 
 @login_required

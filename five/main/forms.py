@@ -50,7 +50,7 @@ class CustomUserCreationForm(forms.Form):
         return user
 
 #becomes main_AusstiegAmb in sqlite3
-class CreateAusstiegAbmulanz(ModelForm):
+class CreateAusstiegAbmulanz(forms.ModelForm):
     class Meta:
         model = AusstiegAmb
         fields = ['name', 'schriftlichepruefung', 'muendlichepruefung', 'akten_abgegeben', 'therapeutenornder_fertiggestellt',
@@ -90,7 +90,7 @@ class CreateAusstiegAbmulanz(ModelForm):
             'pia_zugang_deaktiviert': forms.SelectDateWidget(years=range(2014,2030)),
             'email_gelöscht': forms.SelectDateWidget(years=range(2014,2030))
         }
-    def save(self, *args, **kwargs):
+    def save(self,*args, **kwargs):
         post = AusstiegAmb.objects.create(
             user = kwargs.pop('user'),
             vorname = self.cleaned_data['vorname'],

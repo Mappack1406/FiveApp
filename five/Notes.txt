@@ -76,3 +76,35 @@ def create(request):
             'current_user':current_user, 'form':f
         }
         return render(request, 'main/create.html', context)
+
+
+        <header class="fixed-postion">
+            <div class="d-flex justify-content-between">
+                <ul>
+                    <a class="navbar-brand text-decoration-none fs-3 text-black text-uppercase m-0" href="{% url 'home' %}">Five Survey</a>
+                </ul>
+                <ul>
+                    <button type="button" class="btn btn-primary" onclick="location.href = '/create'">Erstelle Austieg aus der Ambulanz</button>
+                    <button type="button" class="btn btn-success" onclick="location.href = '/feed'">Feed</button>    
+                </ul>
+                <ul class="nav col-12 col-md-auto mb-2 mb-md-0">
+                    <!--<li><a href="{% url 'home' %}" class="nav-link px-2 link-secondary">Place holder</a></li>-->
+                    {% if not user.is_authenticated %}
+                    <div class="col-md-2 text-end hstack gap-3">
+                        <a href="{% url 'login' %}" class="btn btn-sm btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Login</a>
+                    </div>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <div class="col-md-2 text-end hstack gap-3">
+                        <a href="{% url 'logout' %}" class="btn btn-sm btn-secondary btn-lg" tabindex="-1" role="button" aria-disabled="true">Logout</a>
+                    </div>
+                    {% endif %}             
+                </ul>
+            </div>
+        </header>
+
+<div style="padding-top: 85px; height: calc(100% - 85px);">
+    {% block content %}
+        
+    {% endblock %}
+</div>

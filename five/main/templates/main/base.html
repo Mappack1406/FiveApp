@@ -20,37 +20,29 @@
 </head>
 
 <body>
-    <div style="height: 100%;">
-        <div class="container-fluid position-fixed opacity-100" style="background-color: white;">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-0 border-bottom text-center">
-                <a class="navbar-brand text-decoration-none fs-3 text-black text-uppercase m-0" href="{% url 'home' %}">Five Survey</a>
-                <ul class="nav col-12 col-md-auto mb-2 mb-md-0">
-                    <!--<li><a href="{% url 'home' %}" class="nav-link px-2 link-secondary">Place holder</a></li>-->
-                    
-                    {% if not user.is_authenticated %}
-                    <div class="col-md-2 text-end hstack gap-3">
-                        <a href="{% url 'login' %}" class="btn btn-sm btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Login</a>
-                    </div>
-                    {% endif %}
-                    {% if user.is_authenticated %}
-                    <div class="col-md-2 text-end hstack gap-3">
-                        <a href="{% url 'logout' %}" class="btn btn-sm btn-secondary btn-lg" tabindex="-1" role="button" aria-disabled="true">Logout</a>
-                    </div>
-                    {% endif %}             
-                </ul>
-            </header>
-        </div>
-    
-    
+    <div style="height: 100%;">    
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 px-4 border-bottom">
+            <a href="{% url 'home' %}" class="align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none fs-2" style="width: 6em;">Five Survey</a>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 hstack gap-3">
+                <li><button type="button" class="btn btn-success" onclick="location.href = '/feed'">Feed</button></li>
+                <li><button type="button" class="btn btn-primary" onclick="location.href = '/create'">Erstelle Austieg aus der Ambulanz</button></li>
+            </ul>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">            
+                {% if not user.is_authenticated %}
+                <li><a href="{% url 'login' %}" class="btn btn-sm btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Login</a></li>                 
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}" class="btn btn-sm btn-secondary btn-lg" tabindex="-1" role="button" aria-disabled="true">Logout</a></li>
+                {% endif %}
+            </ul>
+        </header>
     
     
     
         <section class="justify-content-xxl-center">
-            <div style="padding-top: 85px; height: calc(100% - 85px);">
-                {% block content %}
-                    
-                {% endblock %}
-            </div>
+            {% block content %}
+                
+            {% endblock %}
         </section>
     </div>
 

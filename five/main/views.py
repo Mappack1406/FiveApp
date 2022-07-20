@@ -69,13 +69,13 @@ def updatesurvey(request, id):
         update = form.save()
         update.user = request.user
         update.save()
-        return redirect('home')
+        return redirect('feed')
     context = {'survey': survey, 'form': form}
     return render(request, 'main/updatesurvey.html', context)
 
 @login_required
 def feed(request):
-    user = User.objects.values().get(username=request.user.username)
+    current_user = User.objects.values().get(username=request.user.username)
     survey = AusstiegAmb.objects.all().values()
-    context = {'q': survey, 'user': user}
+    context = {'q': survey, 'current_user': current_user}
     return render(request, 'main/feed.html', context)

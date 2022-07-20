@@ -1,0 +1,6 @@
+To Do's:
+    ->  Nach drei Monaten anzeigen lassen bei welchem Formular die Email gelöscht werden kann.
+
+    ->  details.html verschönern
+
+    ->  Ins Netzwerkstellen

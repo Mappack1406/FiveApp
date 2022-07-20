@@ -2,8 +2,8 @@
 
 {% block content %}
 
-<div class="col-xxl-12 mx-auto pt-2" style="width: 70%; height:auto;">
-    <h2 class="text-center">Details for {{items.name}} with id = {{items.id}}</h2>
+<div class="col-xxl-12 mx-auto pt-2 pb-4" style="width: 70%; height:auto;">
+    <h2 class="text-center">Details for {{items.name}} with id = {{items.id}} <a class="btn btn-secondary" href="{% url 'updatesurvey' items.id %}">Update</a></h2>
     {% if object1.items %}
     <table class="table table-striped table-hover table-bordered">
         {% for key, value in object1.items %}
@@ -13,7 +13,7 @@
         </tr>
         {% endfor %}
     </table>
-    <td><a href="{% url 'updatesurvey' items.id %}">Update</a></td>
+    <td><a class="btn btn-secondary" href="{% url 'updatesurvey' items.id %}">Update</a></td>
     {%else%}
     <h3>There are no entrys!</h3>
     {% endif %}

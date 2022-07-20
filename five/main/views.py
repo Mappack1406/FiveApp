@@ -52,7 +52,7 @@ def create(request):
         form = CreateAusstiegAbmulanz(request.POST)
         if form.is_valid():
             form.create(user=request.user)
-            return redirect('home')
+            return redirect('feed')
     else:
         current_user = User.objects.all().values().get(username=request.user.username)
         form = CreateAusstiegAbmulanz()

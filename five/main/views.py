@@ -46,27 +46,29 @@ def register(request):
     return render(request, 'registration/register.html', {'form':f})
 
 @login_required
+
 def create(request):
     if request.method == 'POST':
-            f = CreateAusstiegAbmulanz(request.POST, request.user)
-            if f.is_valid():
-                f.save(user=request.user)
-                messages.success(request, 'Post is saved!')
-                return redirect('home')
+        form = CreateAusstiegAbmulanz(request.POST)
+        if form.is_valid():
+            form.create(user=request.user)
+            return redirect('home')
     else:
         current_user = User.objects.all().values().get(username=request.user.username)
-        f = CreateAusstiegAbmulanz()
+        form = CreateAusstiegAbmulanz()
         context = {
-            'current_user':current_user, 'form':f
+            'current_user':current_user, 'form':form
         }
-        return render(request, 'main/create.html', context)
+    return render(request, 'main/create.html', context)
 
 @login_required
 def updatesurvey(request, id):
     survey = AusstiegAmb.objects.get(id=id)
     form = CreateAusstiegAbmulanz(request.POST or None, instance=survey)
     if form.is_valid():
-        form.save(user=request.user)
+        update = form.save()
+        update.user = request.user
+        update.save()
         return redirect('home')
     context = {'survey': survey, 'form': form}
     return render(request, 'main/updatesurvey.html', context)

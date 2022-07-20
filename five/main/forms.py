@@ -53,11 +53,11 @@ class CustomUserCreationForm(forms.Form):
 class CreateAusstiegAbmulanz(forms.ModelForm):
     class Meta:
         model = AusstiegAmb
-        fields = ['name', 'schriftlichepruefung', 'muendlichepruefung', 'akten_abgegeben', 'therapeutenornder_fertiggestellt',
+        fields = ('name', 'schriftlichepruefung', 'muendlichepruefung', 'akten_abgegeben', 'therapeutenornder_fertiggestellt',
         'vorname','festplatte_abgegeben','schluessel_abgegeben','schließfach_geprueft','tuerchip_abgegeben',
         'tuerschild_abgegeben','namensschild_abgegeben','versicherung_abgemeldet','fachkonverenz_ausgetragen',
         'email_verteilerlisten_entfernt','dauerbuchung_geloescht','Staatspruefungstermine_eingetragen','Fiona_auf_beendet',
-        'festplatte_geloescht','pc_account_deaktiviert','pia_zugang_deaktiviert','email_gelöscht']
+        'festplatte_geloescht','pc_account_deaktiviert','pia_zugang_deaktiviert','email_gelöscht')
         widgets = {
             'name': TextInput(attrs={
                 'class': "form-control",
@@ -90,9 +90,8 @@ class CreateAusstiegAbmulanz(forms.ModelForm):
             'pia_zugang_deaktiviert': forms.SelectDateWidget(years=range(2014,2030)),
             'email_gelöscht': forms.SelectDateWidget(years=range(2014,2030))
         }
-    def save(self,*args, **kwargs):
-
-        post = AusstiegAmb.objects.update_or_create(
+    def create(self,*args, **kwargs):
+        post = AusstiegAmb.objects.create(
             user = kwargs.pop('user'),
             vorname = self.cleaned_data['vorname'],
             name = self.cleaned_data['name'],

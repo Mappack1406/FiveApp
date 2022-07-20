@@ -22,3 +22,57 @@ def updatesurvey(request, id):
         return redirect('home')
     context = {'venue': instance, 'form': form}
     return render(request, 'main/updatesurvey.html', context)
+
+
+def save(self,*args, **kwargs):
+
+    post = AusstiegAmb.objects.update_or_create(
+        user = kwargs.pop('user'),
+        vorname = self.cleaned_data['vorname'],
+        name = self.cleaned_data['name'],
+        schriftlichepruefung = self.cleaned_data['schriftlichepruefung'],
+        muendlichepruefung = self.cleaned_data['muendlichepruefung'],
+        akten_abgegeben = self.cleaned_data['akten_abgegeben'],
+        therapeutenornder_fertiggestellt = self.cleaned_data['therapeutenornder_fertiggestellt'],
+        festplatte_abgegeben = self.cleaned_data['festplatte_abgegeben'],
+        schluessel_abgegeben = self.cleaned_data['schluessel_abgegeben'],
+        schließfach_geprueft = self.cleaned_data['schließfach_geprueft'],
+        tuerchip_abgegeben = self.cleaned_data['tuerchip_abgegeben'],
+        tuerschild_abgegeben = self.cleaned_data['tuerschild_abgegeben'],
+        namensschild_abgegeben = self.cleaned_data['namensschild_abgegeben'],
+        versicherung_abgemeldet = self.cleaned_data['versicherung_abgemeldet'],
+        fachkonverenz_ausgetragen = self.cleaned_data['fachkonverenz_ausgetragen'],
+        email_verteilerlisten_entfernt = self.cleaned_data['email_verteilerlisten_entfernt'],
+        dauerbuchung_geloescht = self.cleaned_data['dauerbuchung_geloescht'],
+        Staatspruefungstermine_eingetragen = self.cleaned_data['Staatspruefungstermine_eingetragen'],
+        Fiona_auf_beendet = self.cleaned_data['Fiona_auf_beendet'],
+        festplatte_geloescht = self.cleaned_data['festplatte_geloescht'],
+        pc_account_deaktiviert = self.cleaned_data['pc_account_deaktiviert'],
+        pia_zugang_deaktiviert = self.cleaned_data['pia_zugang_deaktiviert'],
+        email_gelöscht = self.cleaned_data['email_gelöscht']
+    )
+    return post
+
+
+    ['user','name', 'schriftlichepruefung', 'muendlichepruefung', 'akten_abgegeben', 'therapeutenornder_fertiggestellt',
+        'vorname','festplatte_abgegeben','schluessel_abgegeben','schließfach_geprueft','tuerchip_abgegeben',
+        'tuerschild_abgegeben','namensschild_abgegeben','versicherung_abgemeldet','fachkonverenz_ausgetragen',
+        'email_verteilerlisten_entfernt','dauerbuchung_geloescht','Staatspruefungstermine_eingetragen','Fiona_auf_beendet',
+        'festplatte_geloescht','pc_account_deaktiviert','pia_zugang_deaktiviert','email_gelöscht']
+
+
+def create(request):
+    if request.method == 'POST':
+            f = CreateAusstiegAbmulanz(request.POST, request.user)
+            if f.is_valid():
+                user=request.user
+                f.save(user)
+                messages.success(request, 'Post is saved!')
+                return redirect('home')
+    else:
+        current_user = User.objects.all().values().get(username=request.user.username)
+        f = CreateAusstiegAbmulanz()
+        context = {
+            'current_user':current_user, 'form':f
+        }
+        return render(request, 'main/create.html', context)
